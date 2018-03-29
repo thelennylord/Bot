@@ -8,6 +8,7 @@ const processResponse = data => {
   }
 
   // Simple function to get the proper value from the key/value-object array
+  // I am aware that this method requires more loops overall but I just want easily editable embeds ok?
   let getValue = key => data.lifeTimeStats.find(el => el.key == key).value;
 
   return {
