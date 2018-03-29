@@ -45,6 +45,8 @@ module.exports = bot => {
       );
     } catch (error) {
       // Handle error
+      console.error(error);
+
       message.channel.send(`Error finding ${username} on ${platform}.`);
     }
   });
