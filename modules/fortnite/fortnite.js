@@ -21,17 +21,13 @@ module.exports = bot => {
   bot.addCommand("fn *username( *platform)", async ({ message, params }) => {
     // setup params
     let username = params.username;
-    let platform = params.platform;
-    if (platform == null) platform = "pc";
+    let platform = params.platform || "pc";
 
     // Validate platform
-    if (!platform.match("pc|xbl|psn")) {
-      message.channel.send(
+    if (!platform.match("pc|xbl|psn"))
+      return message.channel.send(
         `${platform} is an invalid platform, available platforms are: pc, psn or xbl.`
       );
-
-      return;
-    }
 
     try {
       // Try to fetch stats (it will throw an error when player can't be found)
