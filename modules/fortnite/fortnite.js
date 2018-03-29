@@ -24,16 +24,13 @@ module.exports = bot => {
     let platform = params.platform || "pc";
 
     // Validate platform
-    if (!platform.match("pc|xbl|psn"))
-      return message.channel.send(
-        `${platform} is an invalid platform, available platforms are: pc, psn or xbl.`
-      );
+    if (!platform.match("pc|xbl|psn")) return message.reply(``${platform} is an invalid platform, available platforms are: pc, psn or xbl.`);
 
     try {
       // Try to fetch stats (it will throw an error when player can't be found)
       let stats = await fetchStats(username, platform);
 
-      message.channel.send(
+      message.reply( //Better to tag the executor
         prepareEmbed({
           ...stats,
           author: message.author
@@ -43,7 +40,7 @@ module.exports = bot => {
       // Handle error
       console.error(error);
 
-      message.channel.send(`Error finding ${username} on ${platform}.`);
+      message.reply(`Error finding ${username} on ${platform}.`); //Better to tag the executor
     }
   });
 };
